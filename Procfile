@@ -1,1 +1,1 @@
-web: gunicorn SHD.wsgi
+web: gunicorn shd.wsgi
