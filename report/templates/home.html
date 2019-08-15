@@ -1,122 +1,415 @@
-{% extends 'chart.html' %}
+{% extends 'base.html' %}
 
-<script>
-  {% block jquery %}
-  var endpoint = '/api/chart/data/'
-  var defaultData = []
-  var labels = [];
-  $.ajax({
-      method: "GET",
-      url: endpoint,
-      success: function(data){
-          labels = data.labels
-          defaultData = data.default
-          setChart()
-      },
-      error: function(error_data){
-          console.log("error")
-          console.log(error_data)
-      }
-  })
-  
-  function setChart(){
-      var ctx = document.getElementById("myChart");
-      var ctx2 = document.getElementById("myChart2");
-      var myChart = new Chart(ctx2, {
-      type: 'bar',
-      data: {
-          labels: labels,
-          datasets: [{
-              label: '# of Votes',
-              data: defaultData,
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255,99,132,1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero:true
-                  }
-              }]
-          }
-      }
-  });
-  
-      var myChart = new Chart(ctx, {
-      type: 'polarArea',
-      data: {
-          labels: labels,
-          datasets: [{
-              label: '# of Votes',
-              data: defaultData,
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255,99,132,1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero:true
-                  }
-              }]
-          }
-      }
-  });
-  }
-  // var ctx = document.getElementById("myChart");
-  
-  
-  
-  {% endblock %}
-  </script>
+{% block 'jquery' %}
+{%  endblock %}
 
 {% block 'content' %}
 
-<div class='row'>
-  <div class='col-sm-12' url-endpoint='{% url "api-data" %}'>
-      <h1>Hello World</h1>
-      <div class='col-sm-6'>
-          <canvas id="myChart" width="400" height="400"></canvas>
-      </div>
-      <div class='col-sm-6'>
-          <canvas id="myChart2" width="400" height="400"></canvas>
-      </div>
+<div class="app-content content container-fluid">
+
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <div class="row match-height">
+                <div class="col-xl-4 col-lg-6 col-xs-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-block">
+                                <div class="media">
+                                    <div class="media-body text-xs-left">
+                                        <h3 class="pink">15</h3>
+                                        <span>Types of Health Fascility </span>
+                                    </div>
+                                    <div class="media-right media-middle">
+                                        <i class="icon-home pink font-large-2 float-xs-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-  </div>
+                <div class="col-xl-4 col-lg-6 col-xs-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-block">
+                                <div class="media">
+                                    <div class="media-body text-xs-left">
+                                        <h3 class="deep-orange">175</h3>
+                                        <span>Total Health Fascilities <small class='text-muted'> (SHD to RHC
+                                                level)</small></span>
+                                    </div>
+                                    <div class="media-right media-middle">
+                                        <i class="icon-building deep-orange font-large-2 float-xs-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xl-4 col-lg-6 col-xs-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-block">
+                                <div class="media">
+                                    <div class="media-body text-xs-left">
+                                        <h3 class="teal">1780</h3>
+                                        <span>Employees <small class='text-muted'> (2018 August Data)</small></span>
+
+                                    </div>
+                                    <div class="media-right media-middle">
+                                        <i class="icon-user1 teal font-large-2 float-xs-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- ////emp///////// -->
+
+            <div class="row">
+                <div class="col-xl-8 col-lg-12">
+                    <div class="card card bg-light">
+                        <div class="card-header bg-dark text-dark"> Employment and Health Fascility Status </div>
+                        <div class="card-body">
+                            <div>
+                                <canvas id="emp-chart" class="height-400"></canvas>
+                            </div>
+                        </div>
+                        <!-- <div class="card-footer">
+                    
+                    </div> -->
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-12">
+                    <div class="card card bg-secondary">
+                        <div class="card-header bg-secondary text-dark"> Distribution of Health Fascilities
+                            Employees </div>
+                        <div class="card-body">
+                            <div class="position-relative">
+                                <div class="chart-title position-absolute mt-2 ml-2 white">
+                                    <!-- <h1 class="display-4">0.12%</h1>
+                                <span>among Pregnant Mothers</span> -->
+                                </div>
+                                <canvas id="emp-pie" class="height-400 block"></canvas>
+                                <div
+                                    class="chart-stats position-absolute position-bottom-0 position-right-0 mb-2 mr-3 white">
+                                    <!-- <i class="icon-stats-bars"></i>  Target - 1% of Population -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <!--/ stats -->
+        <!--/ project charts -->
+
+
+
+        <div class="col-xl-12 col-lg-12 col-xs-12 bg-info">
+            <div class="card bg-info">
+                <div class="card-body">
+                    <div class="card-block">
+                        <div class="media">
+                            <div class="media-body text-xs-left">
+                                <h3>National Tuberculosis Program</h3>
+                                <span>
+                                    <div class="row">
+                                        <div class="col-xs-6 ">
+                                            <span class="text-muted">CNR-Bact Confirm Target</span>
+                                            <h2 class="block font-weight-normal">120</h2>
+                                            <progress class="progress progress-xs mt-2 progress-warning" value="70"
+                                                max="100"></progress>
+                                        </div>
+                                        <div class="col-xs-6 text-xs-center">
+                                            <span class="text-muted">CNR-All Forms Target</span>
+                                            <h2 class="block font-weight-normal">292</h2>
+                                            <progress class="progress progress-xs mt-2 progress-success" value="40"
+                                                max="100"></progress>
+                                        </div>
+                                </span>
+                            </div>
+                            <div class="media-right media-middle">
+                                <!-- <i class="icon-ios-bacteria cyan font-large-2 float-xs-right"></i> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <!-- <div class="col-xl-4 col-lg-12">
+                <div class="card bg-info">
+                    <div class="card-header"> TB: Case Notification Rate </div>
+                    <div class="card-body">
+                        <ul class="list-inline text-xs-center pt-2 m-0">
+                            <li class="mr-1">
+                                <h6><i class="icon-circle warning"></i> <span class="grey darken-1">Bact Confirm</span></h6>
+                            </li>
+                            <li class="mr-1">
+                                <h6><i class="icon-circle success"></i> <span class="grey darken-1">All Forms</span></h6>
+                            </li>
+                        </ul>
+                        <div >
+                            <canvas id="tb-cnr-line"class="height-400 " ></canvas>
+                        </div>
+                
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="col-xl-4 col-lg-12">
+                <div class="card card-inverse bg-info">
+                    <div class="card-header "> TB: Presumptive TB Examination Rate </div>
+                    <div class="card-body">
+                        <div class="position-relative">
+                            <div class="chart-title position-absolute mt-2 ml-2 white">
+                                <h1 class="display-4">245</h1>
+                                <span>Per 100,000 Pop</span>
+                            </div>
+                            <canvas id="tb-presumptive-line" class="height-400 block"></canvas>
+                            <div
+                                class="chart-stats position-absolute position-bottom-0 position-right-0 mb-2 mr-3 white">
+                                <i class="icon-stats-bars"></i> Target - 1% of Population
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-12">
+                <div class="card card-inverse bg-info">
+                    <div class="card-header "> TB: Case Notification Rate </div>
+                    <div class="card-body">
+                        <div class="position-relative">
+                            <div class="chart-title position-absolute mt-2 ml-2 white">
+                                <ul class="list-inline text-xs-center pt-3 m-0">
+                                    <li class="mr-1">
+                                        <h6><i class="icon-circle success"></i> <span class="grey darken-1">All
+                                                Forms</span></h6>
+                                    </li>
+                                    <li class="mr-1">
+                                        <h6><i class="icon-circle " style="color: #FF6E40"></i> <span
+                                                class="grey darken-1">Bact Confirm</span></h6>
+                                    </li>
+                                </ul>
+                            </div>
+                            <canvas id="tb-cnr-line" class="height-400 block"></canvas>
+                            <div
+                                class="chart-stats position-absolute position-bottom-0 position-right-0 mb-2 mr-3 white">
+                                <!-- <i class="icon-stats-bars"></i>  Target - 1% of Population -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-lg-12">
+                <div class="card card-inverse bg-info">
+                    <div class="card-header"> TB: Treatment Success Rate </div>
+                    <div class="card-body">
+                        <div class="position-relative">
+                            <div class="chart-title position-absolute position-right-0 white">
+                                <h1 class="display-4 ">86% </h1>
+
+                            </div>
+                            <canvas id="tb-tsr-line" class="height-400 block"></canvas>
+                            <div
+                                class="chart-stats position-absolute position-bottom-0 position-right-0 mb-2 mr-3 white">
+                                <i class="icon-stats-bars"></i> Target - 85% or More
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"> .</div>
+    <!-- // NAP Charts -->
+
+    <div class="col-xl-12 col-lg-12 col-xs-12 bg-success">
+        <div class="card bg-transparent">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-body text-xs-left">
+                            <h3>National HIV/AIDS Program</h3>
+                            <span>
+                                <div class="row">
+                                    <!-- <div class="col-xs-6 text-xs-center">
+                                <span class="text-muted">CNR-Bact Confirm Target</span>
+                                <h2 class="block font-weight-normal">292</h2>
+                                <progress class="progress progress-xs mt-2 progress-warning" value="70" max="100"></progress>
+                            </div>
+                            <div class="col-xs-6 text-xs-center">
+                                <span class="text-muted">CNR-All Forms Target</span>
+                                <h2 class="block font-weight-normal">125</h2>
+                                <progress class="progress progress-xs mt-2 progress-infot" value="40" max="100"></progress>
+                            </div> </span>
+                                </div>
+                                <div class="media-right media-middle">
+                                </div> -->
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="row">
+                <div class="col-xl-4 col-lg-12">
+                    <div class="card card-inverse bg-light">
+                        <div class="card-header bg-success"> HIV: PMCT Testing and Positive </div>
+                        <div class="card-body">
+                            <div>
+                                <canvas id="hiv-pmct-line" class="height-400"></canvas>
+                            </div>
+                        </div>
+                        <!-- <div class="card-footer">
+                    
+                    </div> -->
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-12">
+                    <div class="card card-inverse bg-light">
+                        <div class="card-header bg-success"> HIV Prevalence in Pregnant Mothers </div>
+                        <div class="card-body">
+                            <div class="position-relative">
+                                <div class="chart-title position-absolute mt-2 ml-2 white">
+                                    <h1 class="display-4">0.12%</h1>
+                                    <span>among Pregnant Mothers</span>
+                                </div>
+                                <canvas id="hiv-pmct-bar" class="height-400 block"></canvas>
+                                <div
+                                    class="chart-stats position-absolute position-bottom-0 position-right-0 mb-2 mr-3 white">
+                                    <!-- <i class="icon-stats-bars"></i>  Target - 1% of Population -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-12">
+                    <div class="card card-inverse bg-light ">
+                        <div class="card-header bg-success"> No of People Living with HIV on ART </div>
+                        <div class="card-body">
+                            <div class="position-relative">
+                                <div class="chart-title position-absolute mt-2 ml-2 success">
+                                    <h1 class="display-4 "> 2984 </h1>
+                                    <span>at the end of <strong> 2017</strong> </span>
+                                </div>
+                                <canvas id="hiv-art-line" class="height-400 block"></canvas>
+                                <div
+                                    class="chart-stats position-absolute position-bottom-0 position-right-0 mb-2 mr-3 white">
+                                    <!-- <i class="icon-stats-bars"></i>   Target - 85% or More  -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- // NAP Charts -->
+
+
+    <div class="clearfix"> .</div>
+
+    <!-- // NMCP Charts -->
+
+
+    <div class="col-xl-12 col-lg-12 col-xs-12 bg-primary">
+        <div class="card bg-primary">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-body text-xs-left">
+                            <h3>National Malaria Control Program</h3>
+                            <span>
+                                <div class="row">
+                                    <!-- <div class="col-xs-6 text-xs-center">
+                                <span class="text-muted">CNR-Bact Confirm Target</span>
+                                <h2 class="block font-weight-normal">292</h2>
+                                <progress class="progress progress-xs mt-2 progress-warning" value="70" max="100"></progress>
+                            </div>
+                            <div class="col-xs-6 text-xs-center">
+                                <span class="text-muted">CNR-All Forms Target</span>
+                                <h2 class="block font-weight-normal">125</h2>
+                                <progress class="progress progress-xs mt-2 progress-success" value="40" max="100"></progress>
+                            </div> </span>
+                                </div>
+                                <div class="media-right media-middle"> -->
+                                    <!-- <i class="icon-ios-bacteria cyan font-large-2 float-xs-right"></i> -->
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+
+            <div class="col-xl-6 col-lg-12">
+                <div class="card card-inverse bg-light">
+                    <div class="card-header bg-primary"> Malaria Morbidity and Mortality </div>
+                    <div class="card-body">
+                        <div class="position-relative">
+                            <div class="chart-title position-absolute position-right-0 primary ">
+                                <h1 class="display-5">0 Death</h1>
+                                <span>Since 2016</span>
+                            </div>
+                            <canvas id="malaria-chart" class="height-400 block"></canvas>
+                            <div
+                                class="chart-stats position-absolute position-bottom-0 position-right-0 mb-2 mr-3 white">
+                                <!-- <i class="icon-stats-bars"></i>  Target - 1% of Population -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-12">
+                <div class="card card-inverse bg-light">
+                    <div class="card-header bg-primary"> DHF Morbidity and Mortality </div>
+                    <div class="card-body">
+                        <div class="position-relative">
+                            <div class="chart-title position-absolute mt-2 ml-2 white">
+                                <!-- <h1 class="display-4"></h1>
+                                        <span>among Pregnant Mothers</span> -->
+                            </div>
+                            <canvas id="dhf-chart" class="height-400 block"></canvas>
+                            <div
+                                class="chart-stats position-absolute position-bottom-0 position-right-0 mb-2 mr-3 white">
+                                <!-- <i class="icon-stats-bars"></i>  Target - 1% of Population -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
 {%  endblock %}
