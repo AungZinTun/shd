@@ -398,16 +398,18 @@
 
   <!-- Page level plugins -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <!-- <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script> -->
+  <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script> -->
+  <!-- <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script> -->
   <!-- <script src="{% static "vendor/chart.js/Chart.min.js" %}"></script> -->
   <script>
     $(document).ready(function(){
       {% block jquery %}{% endblock %}
     })
     </script>
-  <!-- Page level custom scripts -->
-  <!-- <script src="{%  static "js/demo/chart-area-demo.js" %}"></script>
-  <script src="{%  static "js/demo/chart-pie-demo.js" %}"></script>
-  <script src="{%  static "js/demo/chart-bar-demo.js" %}"></script> -->
+ {% block 'jquery' %}
+ {% endblock %}
+
  
 </body>
 

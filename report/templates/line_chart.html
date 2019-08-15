@@ -1,0 +1,90 @@
+{% extends 'chart.html' %}
+
+{% block 'jquery' %}
+
+<script type="text/javascript">
+    $.get('{% url "line_chart_json" %}', function(data) {
+        var ctx = $("#myChart").get(0).getContext("2d");
+        new Chart(ctx, {
+            type: 'line', data: data
+        });
+    });
+</script>
+{%  endblock %}
+
+
+{% block 'content' %}
+
+
+<div class="row match-height">
+    <div class="col-xl-4 col-lg-6 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-body text-xs-left">
+                            <h3 class="pink">15</h3>
+                            <span>Types of Health Fascility </span>
+                        </div>
+                        <div class="media-right media-middle">
+                            <i class="icon-home pink font-large-2 float-xs-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div class="col-xl-4 col-lg-6 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-body text-xs-left">
+                            <h3 class="deep-orange">175</h3>
+                            <span>Total Health Fascilities <small class='text-muted'>   (SHD to RHC level)</small></span>
+                        </div>
+                        <div class="media-right media-middle">
+                            <i class="icon-building deep-orange font-large-2 float-xs-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-xl-4 col-lg-6 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-block">
+                    <div class="media">
+                        <div class="media-body text-xs-left">
+                            <h3 class="teal">1780</h3>
+                            <span>Employees  <small class='text-muted'> (2018 August Data)</small></span>
+                            
+                        </div>
+                        <div class="media-right media-middle">
+                            <i class="icon-user1 teal font-large-2 float-xs-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+</div>
+<!-- ////emp///////// -->
+<div class='row'>
+  <div class='col-sm-12' >
+            <h1>Some Line Charts loaded in Ajax!</h1>
+
+            <canvas id="myChart" width="500" height="400"></canvas>
+  </div>
+</div>
+
+{%  endblock %}
+
+ 
