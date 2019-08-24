@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
-from .views import HomeView, get_data, ChartData
+from .import views
 from report import urls
 from TB import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', HomeView.as_view() ),
+    path('', views.home , name='home'),
+    path('login/', views.log_in , name='login'),
     path('tb/', include('TB.urls')),
 ]
