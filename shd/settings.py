@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'service',
     'report',
     'TB',
-    'import_export',
+ 
 ]
 
 MIDDLEWARE = [
