@@ -5,7 +5,117 @@
 
 {% block 'content' %}
 
-<div class="app-content content container-fluid"> 
+<div class="app-content content container-fluid">
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">National TB Control Programme</h6>
+         
+            </div>
+            <div class="card-body">
+
+
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="switchItems" width="100%" cellspacing="0">
+                        <thead>
+                            
+                            <tr>
+                                   
+                                    <th>Year </th>
+                                    <th>Total population </th>
+                                    <th>Target for presumptive TB </th>
+                                    <th>Presumptive TB Examinationn Rate (per 100,000 Pop) </th>
+                                    <th>CNR Bact: Confirmed </th>
+                                    <th>CNR(All Cases) </th>
+                                    <th>Treatment Success rate </th>
+                                    <th>Death rate </th>
+                                    <th>New SS + cases </th>
+                                    <th>Relapse cases </th>
+                                    <th>Smear Positive Unknown Previous Treatment </th>
+                                    <th>Total No of Clinically Diagnosed Cased </th>
+                                    <th>EP cases </th>
+                                    <th>HIV Test among all Register TB Cases </th>
+                                    <th>HIV Positive Case </th>
+                           
+                                    
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for d in data %}
+                            <tr>
+                                  
+                                    <td> {{ d.year}}</td>
+                                    <td> {{ d.total_population}}</td>
+                                    <td> {{ d.target_for_presumptive_tb}}</td>
+                                    <td> {{ d.presumptive_tb_examinationn_rate}}</td>
+                                    <td> {{ d.cnr_bact_confirmed}}</td>
+                                    <td> {{ d.cnr_all_cases}}</td>
+                                    <td> {{ d.treatment_success_rate}}</td>
+                                    <td> {{ d.death_rate}}</td>
+                                    <td> {{ d.new_ss_p_cases}}</td>
+                                    <td> {{ d.relapse_cases}}</td>
+                                    <td> {{ d.smear_positive_unknown_previous_treatment}}</td>
+                                    <td> {{ d.total_no_of_clinically_diagnosed_cased}}</td>
+                                    <td> {{ d.ep_cases}}</td>
+                                    <td> {{ d.hiv_test_among_all_register_tb_cases}}</td>
+                                    <td> {{ d.hiv_positive_case}}</td>  
+                            </tr>
+                            
+                            {% endfor %}
+                       
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    {% block 'script' %}
+    <!-- transpse table -->
+    <script>
+    $(function(){
+        $( document ).ready(function(){
+        var items = [];
+        var itemsConv = [];
+        var table = $('#switchItems');
+        var row,cell;
+        $("tr").each(function(){
+        	var trRow = [];
+        	$(this).children().each(function() {
+        		trRow.push($(this).text());
+        	});
+        	items.push(trRow);
+        });
+        for(var j=0;j<items[0].length;j++){
+        	var newRow = [];
+        	for(var i=0;i<items.length;i++){
+        		newRow.push(items[i][j]);
+        	}
+        	itemsConv.push(newRow);
+        }
+        table.empty();
+		for(var i=0; i<itemsConv.length; i++){
+		    row = $( '<tr />' );
+		    table.append( row );
+		    for(var j=0; j<itemsConv[i].length; j++){
+		        cell = $('<td>'+itemsConv[i][j]+'</td>')
+		        row.append( cell );
+		    }
+		}
+    });
+});
+    </script>
+    <!-- transpse table -->
+   
+
+
+    {% endblock %}
     {% load static %}
     <img src=" {% static "img/tb_gis.JPG" %} " alt="">
 </div>

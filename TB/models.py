@@ -22,8 +22,8 @@ class tb(models.Model):
     presumptive_tb_examinationn_rate = models.IntegerField(default=0)
     cnr_bact_confirmed = models.IntegerField(default=0)
     cnr_all_cases= models.IntegerField(default=0)
-    treatment_success_rate= models.IntegerField(default=0)
-    death_rate= models.IntegerField(default=0)
+    treatment_success_rate= models.FloatField(default=0)
+    death_rate= models.FloatField(default=0)
     new_ss_p_cases= models.IntegerField(default=0)
     relapse_cases= models.IntegerField(default=0)
     smear_positive_unknown_previous_treatment= models.IntegerField(default=0)
@@ -31,3 +31,5 @@ class tb(models.Model):
     ep_cases= models.IntegerField(default=0)
     hiv_test_among_all_register_tb_cases= models.IntegerField(default=0)
     hiv_positive_case= models.IntegerField(default=0)
+    def __str__(self):
+        return self.township.name + (str(self.year))
