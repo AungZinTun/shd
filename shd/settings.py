@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'service',
     'report',
     'TB',
+    "rest_framework",
+    # 'import_export'
  
 ]
 

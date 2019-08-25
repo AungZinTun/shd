@@ -12,8 +12,24 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">National TB Control Programme</h6>
-         
+        
+                <div class="form-group">
+                        <!-- <label>Select State/Townships</label> -->
+                        <form action="">
+                                <select onchange="this.form.submit()" id="townships" name="township" class="form-control">
+                                     
+                                 <option value="#">Select State/Townships</option>
+                                    {% for tsp in tsps %}
+
+                                    <option id={{tsp.id}} value="{{ tsp.id }}">{{ tsp.name }}</option>                    
+                                       
+                                    {% endfor %}
+                                      
+                                </select>
+                        </form>
+                </div>
+                <h2 class="m-0 font-weight-bold text-primary">National TB Control Programme ({{township.township.name}}) </h2>
+
             </div>
             <div class="card-body">
 
@@ -21,7 +37,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered" id="switchItems" width="100%" cellspacing="0">
                         <thead>
-                            
+                            <h4> 
                             <tr>
                                    
                                     <th>Year </th>
@@ -42,20 +58,21 @@
                            
                                     
                             </tr>
+                        </h4>
                         </thead>
                         <tbody>
 
                             {% for d in data %}
                             <tr>
                                   
-                                    <td> {{ d.year}}</td>
+                                    <td ><h4>  {{ d.year}} </h4></td>
                                     <td> {{ d.total_population}}</td>
                                     <td> {{ d.target_for_presumptive_tb}}</td>
                                     <td> {{ d.presumptive_tb_examinationn_rate}}</td>
                                     <td> {{ d.cnr_bact_confirmed}}</td>
                                     <td> {{ d.cnr_all_cases}}</td>
-                                    <td> {{ d.treatment_success_rate}}</td>
-                                    <td> {{ d.death_rate}}</td>
+                                    <td > {{ d.treatment_success_rate}}</td>
+                                    <td > {{ d.death_rate}}</td>
                                     <td> {{ d.new_ss_p_cases}}</td>
                                     <td> {{ d.relapse_cases}}</td>
                                     <td> {{ d.smear_positive_unknown_previous_treatment}}</td>

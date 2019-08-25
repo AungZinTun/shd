@@ -15,10 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . import views
+from .views import *
 from django.views.generic import TemplateView
 app_name = 'tb'
 urlpatterns = [
-     path('', views.index , name='index'),
-   
+     path('', index , name='index'),   
 ]
